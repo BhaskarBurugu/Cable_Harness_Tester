@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSelf_Test"/>
+   <addaction name="actionDiode_Test"/>
+   <addaction name="actionPin_to_Pin_Automatic"/>
+   <addaction name="actionPin_to_Pin_Manual"/>
+   <addaction name="actionBrowse_Test"/>
+   <addaction name="actionManual_Test"/>
+  </widget>
+  <action name="actionSelf_Test">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/SlfTst.png</normaloff>Icons/SlfTst.png</iconset>
+   </property>
+   <property name="text">
+    <string>Self Test</string>
+   </property>
+  </action>
+  <action name="actionDiode_Test">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/DidTst.png</normaloff>Icons/DidTst.png</iconset>
+   </property>
+   <property name="text">
+    <string>Diode Test</string>
+   </property>
+  </action>
+  <action name="actionPin_to_Pin_Automatic">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/PtPAut.png</normaloff>Icons/PtPAut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pin to Pin Automatic</string>
+   </property>
+  </action>
+  <action name="actionPin_to_Pin_Manual">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/PtPMan.png</normaloff>Icons/PtPMan.png</iconset>
+   </property>
+   <property name="text">
+    <string>Pin to Pin Manual</string>
+   </property>
+  </action>
+  <action name="actionBrowse_Test">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/Browse import.png</normaloff>Icons/Browse import.png</iconset>
+   </property>
+   <property name="text">
+    <string>Browse Test</string>
+   </property>
+  </action>
+  <action name="actionManual_Test">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/MT.png</normaloff>Icons/MT.png</iconset>
+   </property>
+   <property name="text">
+    <string>Manual Test</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
