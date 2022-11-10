@@ -1,14 +1,15 @@
 import datetime
 from openpyxl import load_workbook
 from openpyxl.styles import Border, Side
-
+from PyQt5.QtWidgets import QTableWidget
+#####################################################################################################################
 class Get_Reports():
     def set_border(self,worksheet, cell_range):
         thin = Side(border_style="thin", color="000000")
         for row in worksheet[cell_range]:
             for cell in row:
                 cell.border = Border(top=thin, left=thin, right=thin, bottom=thin)
-
+    ###################################################################################################################
     def Generate_Report_SelfTest(self,table_widget):
         # load excel file
         workbook = load_workbook(filename="Reports/SelfTest/SelfTestTemplate.xlsx")
@@ -29,7 +30,7 @@ class Get_Reports():
 
         # save the file
         workbook.save(filename="Reports/SelfTest/SelfTest"+datetime.datetime.now().strftime('%d_%m_%Y_%H_%M_%S')+'.xlsx')
-
+    ###################################################################################################################
     def Generate_Report_PTPMan(self, table_widget):
         # load excel file
         workbook = load_workbook(filename="Reports/PTPManual/PTPManualTemplate.xlsx")
@@ -51,7 +52,13 @@ class Get_Reports():
         # save the file
         workbook.save(
             filename="Reports/PTPManual/PTPManualTest" + datetime.datetime.now().strftime('%d_%m_%Y_%H_%M_%S') + '.xlsx')
-
+    ####################################################################################################################
+    def set_border(self,worksheet, cell_range):
+        thin = Side(border_style="thin", color="000000")
+        for row in worksheet[cell_range]:
+            for cell in row:
+                cell.border = Border(top=thin, left=thin, right=thin, bottom=thin)
+    ####################################################################################################################
     def Generate_Report_PTPAut(self, table_widget):
         # load excel file
         workbook = load_workbook(filename="Reports/PTPAuto/PTPAutoTemplate.xlsx")
@@ -68,8 +75,9 @@ class Get_Reports():
             sheet[f'''G{i + 8}'''] = table_widget.item(i, 6).text()
             sheet[f'''H{i + 8}'''] = table_widget.item(i, 7).text()
 
-        self.set_border(sheet, f'''A8:H{8 + i}''')
+        self.set_border(sheet, f'''A8:H{8 + table_widget.rowCount()}''')
 
         # save the file
         workbook.save(
             filename="Reports/PTPAuto/PTPAutoTest" + datetime.datetime.now().strftime('%d_%m_%Y_%H_%M_%S') + '.xlsx')
+    ################################################################################################################

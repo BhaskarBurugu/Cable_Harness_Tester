@@ -1,4 +1,5 @@
 import socket
+from math import nan
 from time import sleep
 
 import nidmm
@@ -18,7 +19,7 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
         self.label.setText("PIN-PIN AUTOMATIC TEST ")
         self.AbortTestFlag = False
         self.min = 0
-        self.max = 5
+        self.max = 10
         self.tableWidget.setRowCount(0)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.pushButton_Back.clicked.connect(self.closewindow)
@@ -43,14 +44,15 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
             self.tableWidget.setRowCount(self.tableWidget.currentRow() + 1)
             self.pushButton_Back.setEnabled(True)
             self.pushButton_Save.setEnabled(True)
+            self.pushButton_Measure.setEnabled(True)
         else:
             self.AbortTestFlag = False
             self.pushButton_Back.setDisabled(True)
             self.pushButton_Save.setDisabled(True)
+            self.pushButton_Measure.setDisabled(True)
 
     #################################################################################################################
     def fun_measure(self):
-
         try:
             sock = socket.socket()
             sock.connect(('192.168.1.10', 5003))
@@ -69,6 +71,8 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
         self.pushButton_Abort.setEnabled(True)
         self.pushButton_Back.setDisabled(True)
         self.pushButton_Save.setDisabled(True)
+        self.pushButton_Measure.setDisabled(True)
+
         self.tableWidget.setRowCount(0)
         self.AbortTestFlag = False
         self.tableWidget.setRowCount(64*129)
@@ -110,9 +114,7 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
                 self.tableWidget.setItem(rowcount, 0, QTableWidgetItem(str(rowcount + 1)))
                 self.tableWidget.setItem(rowcount, 1, QTableWidgetItem("PIN-" + str(j + 1)))
                 self.tableWidget.setItem(rowcount, 2, QTableWidgetItem("PIN-" + str(i + 1)))
-                self.tableWidget.setItem(rowcount, 3, QTableWidgetItem(str(self.min)))
 
-                self.tableWidget.setItem(rowcount, 5, QTableWidgetItem(str(self.max)))
                 self.tableWidget.setItem(rowcount, 6, QTableWidgetItem("Ohms"))
 
                 self.tableWidget.selectRow(rowcount)
@@ -130,7 +132,6 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
                             session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"],
                                                                  range=10e3,
                                                                  resolution_digits=6.5)
-                            ComErrFlag = True
                         except:
                             QMessageBox.information(self, "Communication Link Down", "Unable to Communicate with  DMM")
                             return
@@ -138,22 +139,43 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
                         self.AbortTestFlag = True
                 else:
                     self.tableWidget.setItem(rowcount, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
-                    self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
-                    '''
+                    #self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
+                    if i in range(0, 64) and j in range(0, 64):
+                        print('Specs 0 to 10 Ohm')
+                        self.min = 0
+                        self.max = 10
+                    elif i in range(0, 64) and j in range(64, 128):
+                        print('Spec > 1K Ohm')
+                        self.min = 950
+                        self.max = 1050
+                    elif i in range(64, 128) and j in range(0, 64):
+                        print('Spec > 1K Ohm')
+                        self.min = 950
+                        self.max = 1050
+                    elif i in range(64, 128) and j in range(64, 128):
+                        print('Specs 0 to 10 Ohm')
+                        self.min = 0
+                        self.max = 10
+                    self.tableWidget.setItem(rowcount, 3, QTableWidgetItem(str(self.min)))
+                    self.tableWidget.setItem(rowcount, 5, QTableWidgetItem(str(self.max)))
+
                     if measured_value > self.min and measured_value < self.max:
-                        self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
+                        self.tableWidget.setItem(rowcount, 7, QTableWidgetItem("PASS"))
                         i = i + 1
                         FailTrailCount = 0
+                        rowcount = rowcount + 1
                     elif FailTrailCount >= 3:
-                        self.tableWidget.setItem(i, 7, QTableWidgetItem("FAILED"))
+                        self.tableWidget.setItem(rowcount, 7, QTableWidgetItem("FAILED"))
                         i = i + 1
                         FailTrailCount = 0
+                        rowcount = rowcount + 1
                     else:
                         FailTrailCount = FailTrailCount + 1
-                    '''
+                '''
                 if ComErrFlag == False:
                     i = i + 1
                     rowcount = rowcount + 1
+                '''
 
         sock.close()
         self.pushButton_Back.setEnabled(True)

@@ -1,6 +1,5 @@
 
-#####################################################################################################
-
+##########################################################################################################
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QTableWidgetItem, QMessageBox, qApp
 
@@ -12,9 +11,7 @@ from Dlg_PintoPinAutomatic import Pin_to_Pin_AutomaticDlg
 from Ui_Main_Screen import Ui_MainWindow
 from Dlg_PintoPinManual import Pin_to_Pin_ManualDlg
 from Dlg_SelfTest import SelfTestDlg
-
-
-###############################################################
+###########################################################################################################
 class CableHarnessTester(Ui_MainWindow):
     def __init__(self):
         self.global_var_1 = 1
@@ -70,9 +67,7 @@ class CableHarnessTester(Ui_MainWindow):
         print('Manual Test')
         dlg = ManualTestDlg()
         dlg.exec()
-
 ###########################################################################################################
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     # create a main window
