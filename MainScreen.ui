@@ -6,12 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1024</width>
+    <height>720</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>1395</width>
+    <height>821</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>MS Serif</family>
+    <pointsize>8</pointsize>
+    <weight>50</weight>
+    <bold>false</bold>
+    <strikeout>false</strikeout>
+    <kerning>false</kerning>
+   </font>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Cable Harness Tester</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Logos/AppLogo128x128.ico</normaloff>Logos/AppLogo128x128.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>50</width>
+    <height>50</height>
+   </size>
   </property>
   <property name="documentMode">
    <bool>false</bool>
@@ -19,7 +48,230 @@
   <property name="unifiedTitleAndToolBarOnMac">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_2_Sftw">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>100</y>
+      <width>581</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Georgia</family>
+      <pointsize>25</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(133, 0, 199);</string>
+    </property>
+    <property name="text">
+     <string>CABLE HARNESS TESTER</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>190</y>
+      <width>441</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton_SelfTest">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Self Test</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/SlfTst.png</normaloff>Icons/SlfTst.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_DiodeTest">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Diode Test</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/DidTst.png</normaloff>Icons/DidTst.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_BrowseTest">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Browse Test</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/Browse import.png</normaloff>Icons/Browse import.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="pushButton_PTPMan">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pin to Pin Manual</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/PtPMan.png</normaloff>Icons/PtPMan.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_ManualTest">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Manual Test</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/MT.png</normaloff>Icons/MT.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_PTPAut">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Pin to Pin Automatic</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>Icons/PtPAut.png</normaloff>Icons/PtPAut.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>840</x>
+      <y>30</y>
+      <width>161</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Icons/DRDO-DRDL.png</pixmap>
+    </property>
+   </widget>
+  </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
    <property name="windowTitle">
@@ -30,8 +282,8 @@
    </property>
    <property name="iconSize">
     <size>
-     <width>32</width>
-     <height>32</height>
+     <width>50</width>
+     <height>50</height>
     </size>
    </property>
    <property name="floatable">
@@ -44,11 +296,22 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSelf_Test"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionDiode_Test"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionPin_to_Pin_Automatic"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionPin_to_Pin_Manual"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionBrowse_Test"/>
+   <addaction name="separator"/>
+   <addaction name="separator"/>
    <addaction name="actionManual_Test"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionSelf_Test">
    <property name="icon">

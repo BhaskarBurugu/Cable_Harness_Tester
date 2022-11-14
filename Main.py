@@ -31,6 +31,13 @@ class CableHarnessTester(Ui_MainWindow):
         self.actionBrowse_Test.triggered.connect(self.Browse_Test)
         self.actionManual_Test.triggered.connect(self.Manual_Test)
 
+        self.pushButton_SelfTest.clicked.connect(self.SelfTest)
+        self.pushButton_DiodeTest.clicked.connect(self.DiodeTest)
+        self.pushButton_PTPAut.clicked.connect(self.Pin_to_Pin_Auto)
+        self.pushButton_PTPMan.clicked.connect(self.Pin_to_Pin_Manual)
+        self.pushButton_BrowseTest.clicked.connect(self.Browse_Test)
+        self.pushButton_ManualTest.clicked.connect(self.Manual_Test)
+
     def Login(self):
         print('Login')
         dlg = LoginDlg()

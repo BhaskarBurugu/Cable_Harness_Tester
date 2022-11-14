@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1126</width>
-    <height>843</height>
+    <width>1024</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
     <rect>
-     <x>55</x>
+     <x>60</x>
      <y>150</y>
-     <width>1011</width>
-     <height>551</height>
+     <width>891</width>
+     <height>461</height>
     </rect>
    </property>
    <column>
@@ -66,9 +66,9 @@
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>55</x>
-     <y>710</y>
-     <width>1051</width>
+     <x>60</x>
+     <y>620</y>
+     <width>931</width>
      <height>16</height>
     </rect>
    </property>
@@ -79,7 +79,7 @@
   <widget class="QComboBox" name="comboBox_LineX">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>280</x>
      <y>110</y>
      <width>111</width>
      <height>22</height>
@@ -94,7 +94,7 @@
   <widget class="QLabel" name="label_Units_2">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>280</x>
      <y>90</y>
      <width>81</width>
      <height>16</height>
@@ -117,8 +117,8 @@
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>235</x>
-     <y>740</y>
+     <x>170</x>
+     <y>640</y>
      <width>691</width>
      <height>80</height>
     </rect>
@@ -185,7 +185,7 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>310</x>
      <y>0</y>
      <width>381</width>
      <height>61</height>
@@ -209,7 +209,7 @@
   <widget class="QFrame" name="LineY">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>410</x>
      <y>70</y>
      <width>331</width>
      <height>71</height>

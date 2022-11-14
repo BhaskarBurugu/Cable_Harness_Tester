@@ -15,6 +15,9 @@ class Ui_Dialog_BrowseTest(object):
     def setupUi(self, Dialog_BrowseTest):
         Dialog_BrowseTest.setObjectName("Dialog_BrowseTest")
         Dialog_BrowseTest.resize(1159, 837)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("Logos/logotrspisq.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Dialog_BrowseTest.setWindowIcon(icon)
         self.tableWidget = QtWidgets.QTableWidget(Dialog_BrowseTest)
         self.tableWidget.setGeometry(QtCore.QRect(70, 120, 1011, 561))
         self.tableWidget.setObjectName("tableWidget")
@@ -54,7 +57,7 @@ class Ui_Dialog_BrowseTest(object):
         self.pushButton_Browse.setGeometry(QtCore.QRect(900, 80, 51, 31))
         self.pushButton_Browse.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../OneDrive/Desktop/Icons/BT.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("Icons/BT.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_Browse.setIcon(icon)
         self.pushButton_Browse.setIconSize(QtCore.QSize(20, 20))
         self.pushButton_Browse.setFlat(False)

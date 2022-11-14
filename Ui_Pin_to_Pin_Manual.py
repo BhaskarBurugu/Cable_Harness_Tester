@@ -158,7 +158,7 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
 
     def retranslateUi(self, Dialog_Pin_to_PinManual):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_Pin_to_PinManual.setWindowTitle(_translate("Dialog_Pin_to_PinManual", "Pin to Pin Manual"))
+        Dialog_Pin_to_PinManual.setWindowTitle(_translate("Dialog_Pin_to_PinManual", "Pin to Pin Manual Test"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog_Pin_to_PinManual", "S.No"))
         item = self.tableWidget.horizontalHeaderItem(1)
