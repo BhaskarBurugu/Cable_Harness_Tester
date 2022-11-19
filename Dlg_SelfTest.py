@@ -1,4 +1,5 @@
 import datetime
+import math
 import socket
 import sys
 from time import sleep
@@ -75,7 +76,7 @@ class SelfTestDlg(QDialog,Ui_Dialog_SelfTest):
             QMessageBox.information(self, "Link Down", "Unable to Communicate with  Interface Box")
             return
         try:
-            session = nidmm.Session("DMM4605")
+            session = nidmm.Session("DMM4065")
             session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"], range=10e3,
                                                  resolution_digits=6.5)
         except:
@@ -145,7 +146,7 @@ class SelfTestDlg(QDialog,Ui_Dialog_SelfTest):
                     QMessageBox.information(self, "Link Down",
                                             "Unplug USB Cable of DMM & re-plug. wait for few seconds")
                     try:
-                        session = nidmm.Session("DMM4605")
+                        session = nidmm.Session("DMM4065")
                         session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"],
                                                              range=10e3,
                                                              resolution_digits=6.5)
@@ -156,7 +157,10 @@ class SelfTestDlg(QDialog,Ui_Dialog_SelfTest):
                     self.AbortTestFlag = True
                     self.tableWidget.setRowCount(self.tableWidget.currentRow()+1)
             else:
-                self.tableWidget.setItem(i, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
+                if measured_value == 20e6:
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem('20M Ohm'))
+                else:
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
                 if measured_value>self.min and measured_value<self.max:
                     self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
                     qApp.processEvents()
@@ -207,6 +211,8 @@ class SelfTestDlg(QDialog,Ui_Dialog_SelfTest):
        #                                          resolution_digits=6.5)
         try:
             meas_res = session.read()
+            if  math. isnan(meas_res):
+                meas_res = 20e6
             return meas_res
         except:
             print("out of range")

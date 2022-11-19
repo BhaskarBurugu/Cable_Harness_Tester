@@ -25,6 +25,7 @@ class FaultReportDlg(QDialog,Ui_Dialog_SelfTest):
         self.label.move(300,20)
         self.GUI=None
         self.pushButton_Save.clicked.connect(self.SaveReport)
+        self.pushButton_Save.hide()
         self.pushButton_Abort.hide()
         self.progressBar.hide()
         self.pushButton_Measure.hide()

@@ -1,3 +1,4 @@
+import math
 import socket
 from time import sleep
 
@@ -32,7 +33,7 @@ class ManualTestDlg(QDialog,Ui_Dialog_Manual_Test):
             QMessageBox.information(self, "Link Down", "Unable to Communicate with  Interface Box")
             return 
         try:
-            self.session = nidmm.Session("DMM4605")
+            self.session = nidmm.Session("DMM4065")
             self.session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"], range=10e3,
                                                  resolution_digits=6.5)
         except:
@@ -84,6 +85,8 @@ class ManualTestDlg(QDialog,Ui_Dialog_Manual_Test):
        #                                      resolution_digits=6.5)
         try:
             meas_res = session.read()
+            if math. isnan(meas_res):
+                meas_res = 20e6
             return meas_res
         except:
             print("out of range")

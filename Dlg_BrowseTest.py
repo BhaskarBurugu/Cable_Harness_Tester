@@ -1,4 +1,5 @@
 import datetime
+import math
 import socket
 from time import sleep
 
@@ -8,7 +9,7 @@ from PyQt5.QtWidgets import *
 from openpyxl import load_workbook
 from openpyxl.styles import Side, Border
 
-from Reports_Generator import Get_Reports
+#from Reports_Generator import Get_Reports
 from Ui_Browse_Test import Ui_Dialog_BrowseTest
 from Dlg_FaultReport import FaultReportDlg
 import os
@@ -85,7 +86,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
             QMessageBox.information(self, "Communication Link Down", "Unable to Communicate with  Interface Box")
             return
         try:
-            session = nidmm.Session("DMM4605")
+            session = nidmm.Session("DMM4065")
             session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"], range=10e3,
                                                  resolution_digits=6.5)
         except:
@@ -96,7 +97,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
         self.pushButton_Back.setDisabled(True)
         self.pushButton_Save.setDisabled(True)
         self.pushButton_Measure.setDisabled(True)
-        self.tableWidget.setRowCount(128)
+        self.tableWidget.setRowCount(self.nr-8)
         self.tableWidget.clear()
         self.tableWidget.setHorizontalHeaderLabels(
             ["S.No", "Line X", "Linw Y", "Min", "Measured ", "Max", "Units", "Result"])
@@ -104,6 +105,8 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
         measured_value = 4.5
         FailTrailCount = 0
         falutypoints = 0
+        frominlist_byte = []
+        topinlist_byte = []
         try:
             frominlist_byte = bytearray(self.frompinlist)
             topinlist_byte = bytearray(self.topinlist)
@@ -124,6 +127,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
             Packet.append(topinlist_byte[i])
             print('Lane_Y', topinlist_byte[i])
             Packet.append(0x01)
+
             try:
                 sock.send(bytes(Packet))
                 sleep(0.1)
@@ -158,11 +162,12 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
             #self.tableWidget.setItem(i, 5, QTableWidgetItem(str(self.max)))
             self.tableWidget.setItem(i, 6, QTableWidgetItem("Ohms"))
 
-            self.tableWidget.setRowCount(self.nr)
+            #self.tableWidget.setRowCount(self.nr-8)
             self.tableWidget.selectRow(i)
-            self.progressBar.setValue(int((i + 1) * 100 / self.nr))
+            self.progressBar.setValue(int((i + 1) * 100 / (self.nr-8)))
 
             qApp.processEvents()
+            #measured_value = 100
             measured_value = self.GetMeasfromDMM(session=session, range=10e3)
             if measured_value == None:
                 msg = QMessageBox.critical(self, "Link Down", "Unable to Communicate with  DMM\nDo you want to Retry?",
@@ -171,7 +176,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                     QMessageBox.information(self, "Link Down",
                                             "Unplug USB Cable of DMM & re-plug. wait for few seconds")
                     try:
-                        session = nidmm.Session("DMM4605")
+                        session = nidmm.Session("DMM4065")
                         session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"],
                                                              range=10e3,
                                                              resolution_digits=6.5)
@@ -189,7 +194,10 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                     FailTrailCount = FailTrailCount + 1
                 '''
             else:
-                self.tableWidget.setItem(i, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
+                if measured_value == 20e6:
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem('20M Ohm'))
+                else:
+                    self.tableWidget.setItem(i, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
                 self.min = self.minvallist[i]
                 self.max = self.maxvallist[i]
                 self.tableWidget.setItem(i, 3, QTableWidgetItem(f'''{self.min:.2f}'''))
@@ -204,10 +212,8 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                     self.FaultReportDlg.tableWidget.setRowCount(falutypoints + 1)
                     self.FaultReportDlg.label.setText("BROWSE TEST-FAULTS REPORT")
                     self.FaultReportDlg.GUI="BrowseTest"
-
                     self.FaultReportDlg.tableWidget.setItem(falutypoints, 0,
                                                             QTableWidgetItem(self.tableWidget.item(i, 0).text()))
-
                     self.FaultReportDlg.tableWidget.setItem(falutypoints, 1,
                                                             QTableWidgetItem(self.tableWidget.item(i, 1).text()))
                     self.FaultReportDlg.tableWidget.setItem(falutypoints, 2,
@@ -223,7 +229,6 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                     self.FaultReportDlg.tableWidget.setItem(falutypoints, 7,
                                                             QTableWidgetItem(self.tableWidget.item(i, 7).text()))
                     # self.FaultReportDlg.tableWidget.setItem(falutypoints, 0, self.tableWidget.item(i, 0).text())
-
                     falutypoints = falutypoints + 1
                     self.TestFailFlag=True
                     i = i + 1
@@ -244,9 +249,10 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
     ##############################################################################################################
     def GetMeasfromDMM(self,session =None,range = 100e6):
         #with nidmm.Session("DMM4605") as session:
-
         try:
             meas_res = session.read()
+            if  math. isnan(meas_res):
+                meas_res = 20e6
             return meas_res
         except:
             print("out of range")
@@ -281,7 +287,6 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                     self.tableWidget.setItem(i, 6, QTableWidgetItem("Ohms"))
                     self.tableWidget.setItem(i, 7, QTableWidgetItem("---"))
                     self.pushButton_Measure.setDisabled(False)
-
             except:
                 self.lineEdit.clear()
                 self.tableWidget.clear()
@@ -301,7 +306,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
         sheet["A9"] = self.inputsheet["A5"].value
         sheet["C3"] = datetime.datetime.now().strftime("%d/%m/%Y")
         sheet["D3"] = datetime.datetime.now().strftime("%I:%M%p")
-
+        i = 0
         for i in range(0, self.tableWidget.rowCount()):
             sheet[f'''A{i + 12}'''] = self.tableWidget.item(i, 0).text()
             sheet[f'''B{i + 12}'''] = self.tableWidget.item(i, 1).text()

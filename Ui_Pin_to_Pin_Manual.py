@@ -11,15 +11,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog_Pin_to_Pin_Manual(object):
+class Ui_Dialog_Pin_to_PinManual(object):
     def setupUi(self, Dialog_Pin_to_PinManual):
         Dialog_Pin_to_PinManual.setObjectName("Dialog_Pin_to_PinManual")
-        Dialog_Pin_to_PinManual.resize(1126, 843)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("Logos/logotrspisq.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Dialog_Pin_to_PinManual.setWindowIcon(icon)
+        Dialog_Pin_to_PinManual.resize(1024, 720)
         self.tableWidget = QtWidgets.QTableWidget(Dialog_Pin_to_PinManual)
-        self.tableWidget.setGeometry(QtCore.QRect(55, 150, 1011, 551))
+        self.tableWidget.setGeometry(QtCore.QRect(60, 150, 891, 461))
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(8)
         self.tableWidget.setRowCount(0)
@@ -40,15 +37,15 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(7, item)
         self.progressBar = QtWidgets.QProgressBar(Dialog_Pin_to_PinManual)
-        self.progressBar.setGeometry(QtCore.QRect(55, 710, 1051, 16))
+        self.progressBar.setGeometry(QtCore.QRect(60, 620, 931, 16))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
         self.comboBox_LineX = QtWidgets.QComboBox(Dialog_Pin_to_PinManual)
-        self.comboBox_LineX.setGeometry(QtCore.QRect(330, 110, 111, 22))
+        self.comboBox_LineX.setGeometry(QtCore.QRect(280, 110, 111, 22))
         self.comboBox_LineX.setObjectName("comboBox_LineX")
         self.comboBox_LineX.addItem("")
         self.label_Units_2 = QtWidgets.QLabel(Dialog_Pin_to_PinManual)
-        self.label_Units_2.setGeometry(QtCore.QRect(330, 90, 81, 16))
+        self.label_Units_2.setGeometry(QtCore.QRect(280, 90, 81, 16))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(True)
@@ -56,7 +53,7 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
         self.label_Units_2.setFont(font)
         self.label_Units_2.setObjectName("label_Units_2")
         self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog_Pin_to_PinManual)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(235, 740, 691, 80))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(170, 640, 691, 80))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
@@ -94,7 +91,7 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
         self.pushButton_Back.setObjectName("pushButton_Back")
         self.horizontalLayout.addWidget(self.pushButton_Back)
         self.label = QtWidgets.QLabel(Dialog_Pin_to_PinManual)
-        self.label.setGeometry(QtCore.QRect(360, 0, 381, 61))
+        self.label.setGeometry(QtCore.QRect(310, 0, 381, 61))
         font = QtGui.QFont()
         font.setPointSize(20)
         font.setBold(True)
@@ -104,7 +101,7 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
         self.label.setStyleSheet("color: rgb(85, 0, 127);")
         self.label.setObjectName("label")
         self.LineY = QtWidgets.QFrame(Dialog_Pin_to_PinManual)
-        self.LineY.setGeometry(QtCore.QRect(460, 70, 331, 71))
+        self.LineY.setGeometry(QtCore.QRect(410, 70, 331, 71))
         self.LineY.setBaseSize(QtCore.QSize(0, 0))
         self.LineY.setFrameShape(QtWidgets.QFrame.Box)
         self.LineY.setFrameShadow(QtWidgets.QFrame.Sunken)
@@ -158,7 +155,7 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
 
     def retranslateUi(self, Dialog_Pin_to_PinManual):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_Pin_to_PinManual.setWindowTitle(_translate("Dialog_Pin_to_PinManual", "Pin to Pin Manual Test"))
+        Dialog_Pin_to_PinManual.setWindowTitle(_translate("Dialog_Pin_to_PinManual", "Pin to Pin Manual"))
         item = self.tableWidget.horizontalHeaderItem(0)
         item.setText(_translate("Dialog_Pin_to_PinManual", "S.No"))
         item = self.tableWidget.horizontalHeaderItem(1)
@@ -175,6 +172,7 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
         item.setText(_translate("Dialog_Pin_to_PinManual", "Units"))
         item = self.tableWidget.horizontalHeaderItem(7)
         item.setText(_translate("Dialog_Pin_to_PinManual", "Results"))
+        self.comboBox_LineX.setItemText(0, _translate("Dialog_Pin_to_PinManual", "PIN-1"))
         self.label_Units_2.setText(_translate("Dialog_Pin_to_PinManual", "Line X"))
         self.pushButton_Measure.setText(_translate("Dialog_Pin_to_PinManual", "&Measure"))
         self.pushButton_Save.setText(_translate("Dialog_Pin_to_PinManual", "&Save"))
@@ -184,4 +182,5 @@ class Ui_Dialog_Pin_to_Pin_Manual(object):
         self.label_Units_5.setText(_translate("Dialog_Pin_to_PinManual", "Line Y"))
         self.label_Units_4.setText(_translate("Dialog_Pin_to_PinManual", "To:"))
         self.label_Units_3.setText(_translate("Dialog_Pin_to_PinManual", "From:"))
+        self.comboBox_From.setItemText(0, _translate("Dialog_Pin_to_PinManual", "PIN-2"))
         self.comboBox_To.setItemText(0, _translate("Dialog_Pin_to_PinManual", "PIN-128"))

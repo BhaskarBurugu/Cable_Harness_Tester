@@ -1,4 +1,5 @@
 import datetime
+import math
 import socket
 from math import nan
 from time import sleep
@@ -69,7 +70,7 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
             QMessageBox.information(self, "Link Down", "Unable to Communicate with  Interface Box")
             return
         try:
-            session = nidmm.Session("DMM4605")
+            session = nidmm.Session("DMM4065")
             session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"], range=10e3,
                                                   resolution_digits=6.5)
         except:
@@ -139,7 +140,7 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
                     if msg == QMessageBox.Yes:
                         QMessageBox.information(self, "Link Down", "Unplug USB Cable of DMM & re-plug. wait for few seconds")
                         try:
-                            session = nidmm.Session("DMM4605")
+                            session = nidmm.Session("DMM4065")
                             session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"],
                                                                  range=10e3,
                                                                  resolution_digits=6.5)
@@ -149,7 +150,10 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
                     else:
                         self.AbortTestFlag = True
                 else:
-                    self.tableWidget.setItem(rowcount, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
+                    if measured_value == 20e6:
+                        self.tableWidget.setItem(i, 4, QTableWidgetItem('20M Ohm'))
+                    else:
+                        self.tableWidget.setItem(rowcount, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
                     #self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
                     if i in range(0, 64) and j in range(0, 64):
                         print('Specs 0 to 10 Ohm')
@@ -234,6 +238,8 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
        #                                      resolution_digits=6.5)
         try:
             meas_res = session.read()
+            if  math. isnan(meas_res):
+                meas_res = 20e6
             return meas_res
         except:
             print("out of range")

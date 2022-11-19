@@ -11,13 +11,10 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Dialog_Pin_to_Pin_Automatic(object):
+class Ui_Dialog_Pin_to_PinAutomatic(object):
     def setupUi(self, Dialog_Pin_to_PinAutomatic):
         Dialog_Pin_to_PinAutomatic.setObjectName("Dialog_Pin_to_PinAutomatic")
         Dialog_Pin_to_PinAutomatic.resize(1030, 642)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("Logos/logotrspisq.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        Dialog_Pin_to_PinAutomatic.setWindowIcon(icon)
         self.tableWidget = QtWidgets.QTableWidget(Dialog_Pin_to_PinAutomatic)
         self.tableWidget.setGeometry(QtCore.QRect(10, 41, 1011, 521))
         self.tableWidget.setObjectName("tableWidget")
