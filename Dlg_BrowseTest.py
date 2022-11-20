@@ -168,7 +168,9 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
 
             qApp.processEvents()
             #measured_value = 100
-            measured_value = self.GetMeasfromDMM(session=session, range=10e3)
+            self.min = self.minvallist[i]
+            self.max = self.maxvallist[i]
+            measured_value = self.GetMeasfromDMM(session=session, range=self.max)
             if measured_value == None:
                 msg = QMessageBox.critical(self, "Link Down", "Unable to Communicate with  DMM\nDo you want to Retry?",
                                            QMessageBox.Yes | QMessageBox.No)
@@ -198,8 +200,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                     self.tableWidget.setItem(i, 4, QTableWidgetItem('20M Ohm'))
                 else:
                     self.tableWidget.setItem(i, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
-                self.min = self.minvallist[i]
-                self.max = self.maxvallist[i]
+
                 self.tableWidget.setItem(i, 3, QTableWidgetItem(f'''{self.min:.2f}'''))
                 self.tableWidget.setItem(i, 5, QTableWidgetItem(f'''{self.max:.2f}'''))
                 print(self.min,self.max)
@@ -248,8 +249,11 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                 dlg.exec()
     ##############################################################################################################
     def GetMeasfromDMM(self,session =None,range = 100e6):
-        #with nidmm.Session("DMM4605") as session:
+       # with nidmm.Session("DMM4605") as session:
         try:
+            session.configure_measurement_digits(measurement_function=nidmm.Function["TWO_WIRE_RES"],
+                                                 range=range,
+                                                 resolution_digits=6.5)
             meas_res = session.read()
             if  math. isnan(meas_res):
                 meas_res = 20e6

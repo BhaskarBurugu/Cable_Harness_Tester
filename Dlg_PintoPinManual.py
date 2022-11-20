@@ -31,7 +31,7 @@ class Pin_to_Pin_ManualDlg(QDialog,Ui_Dialog_Pin_to_PinManual):
 
         self.pushButton_Measure.clicked.connect(self.fun_measure)
         self.pushButton_Abort.clicked.connect(self.AbortTest)
-        #self.pushButton_Save.clicked.connect(self.SaveReport)
+        self.pushButton_Save.clicked.connect(self.SaveReport)
         self.pushButton_Abort.setDisabled(True)
         self.pushButton_Save.setDisabled(True)
 

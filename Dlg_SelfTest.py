@@ -33,7 +33,7 @@ class SelfTestDlg(QDialog,Ui_Dialog_SelfTest):
 
         self.pushButton_Measure.clicked.connect(self.fun_measure)
         self.pushButton_Abort.clicked.connect(self.AbortTest)
-       # self.pushButton_Save.clicked.connect(self.SaveReport)
+        self.pushButton_Save.clicked.connect(self.SaveReport)
         self.pushButton_Abort.setDisabled(True)
         self.pushButton_Save.setDisabled(True)
 
