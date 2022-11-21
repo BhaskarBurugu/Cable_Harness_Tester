@@ -161,7 +161,7 @@ class SelfTestDlg(QDialog,Ui_Dialog_SelfTest):
                     self.tableWidget.setItem(i, 4, QTableWidgetItem('20M Ohm'))
                 else:
                     self.tableWidget.setItem(i, 4, QTableWidgetItem(f'''{measured_value:.2f}'''))
-                if measured_value>self.min and measured_value<self.max:
+                if measured_value>=self.min and measured_value<=self.max:
                     self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
                     qApp.processEvents()
                     i = i + 1

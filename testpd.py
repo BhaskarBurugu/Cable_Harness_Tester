@@ -19,4 +19,16 @@ for i in range(8, nr):
 '''
 #frominlist_byte = bytearray(frompinlist)
 #topinlist_byte =  bytearray(topinlist)
-print((10).to_bytes(1, byteorder='big'))
+#print((10).to_bytes(1, byteorder='big'))
+
+def Resistance_Format(resistance = 100e3):
+    if (resistance >= 0.0 and resistance <1000):
+        return f'''{resistance:.2f} \u03A9'''
+    elif (resistance >= 1e3 and resistance < 1000e3):
+        return f'''{(resistance/1e3):.2f} K\u03A9'''
+    elif resistance >= 1e6 :
+        return f'''{(resistance/1e6):.2f} M\u03A9'''
+
+
+print(Resistance_Format(float('nan')))
+

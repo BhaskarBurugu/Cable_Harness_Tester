@@ -174,7 +174,7 @@ class Pin_to_Pin_AutomaticDlg(QDialog,Ui_Dialog_SelfTest):
                     self.tableWidget.setItem(rowcount, 3, QTableWidgetItem(str(self.min)))
                     self.tableWidget.setItem(rowcount, 5, QTableWidgetItem(str(self.max)))
 
-                    if measured_value > self.min and measured_value < self.max:
+                    if measured_value >= self.min and measured_value <= self.max:
                         self.tableWidget.setItem(rowcount, 7, QTableWidgetItem("PASS"))
                         i = i + 1
                         FailTrailCount = 0

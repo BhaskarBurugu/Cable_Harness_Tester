@@ -204,7 +204,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                 self.tableWidget.setItem(i, 3, QTableWidgetItem(f'''{self.min:.2f}'''))
                 self.tableWidget.setItem(i, 5, QTableWidgetItem(f'''{self.max:.2f}'''))
                 print(self.min,self.max)
-                if measured_value > self.min and measured_value < self.max:
+                if measured_value >= self.min and measured_value <= self.max:
                     self.tableWidget.setItem(i, 7, QTableWidgetItem("PASS"))
                     i = i + 1
                     FailTrailCount = 0
@@ -237,9 +237,7 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
                 else:
                     FailTrailCount = FailTrailCount + 1
         sock.close()
-        self.pushButton_Back.setEnabled(True)
-        self.pushButton_Abort.setDisabled(True)
-        self.pushButton_Save.setEnabled(True)
+
         print("measure")
         if self.TestFailFlag==True:
             self.TestFailFlag=False
@@ -247,6 +245,11 @@ class BrowseTestDlg(QDialog,Ui_Dialog_BrowseTest):
             if frmsg==QMessageBox.Yes:
                 dlg = self.FaultReportDlg
                 dlg.exec()
+
+        self.pushButton_Back.setEnabled(True)
+        self.pushButton_Abort.setDisabled(True)
+        self.pushButton_Save.setEnabled(True)
+        self.pushButton_Measure.setEnabled(True)
     ##############################################################################################################
     def GetMeasfromDMM(self,session =None,range = 100e6):
        # with nidmm.Session("DMM4605") as session:
